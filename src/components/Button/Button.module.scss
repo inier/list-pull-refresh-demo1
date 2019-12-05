@@ -1,0 +1,250 @@
+@import '../../settings';
+
+// btn margin计算
+@mixin btn-margin {
+    margin-right: $btn-group-margin-v;
+    &:first-child {
+        margin-left: $btn-group-margin-v;
+    }
+    @include max-screen($breakpoint-xs) {
+        margin-right: $btn-group-margin-v-xs;
+        &:first-child {
+            margin-left: $btn-group-margin-v-xs;
+        }
+    }
+}
+
+// btn size换算
+@mixin btn-size($size: $btn-size-md-text, $height: $btn-size-md, $padding-x: 1.4em) {
+    //height: $height;
+    min-width: $btn-min-width;
+    padding: 0 $padding-x;
+    font-size: $size;
+    line-height: $height;
+}
+
+// btn background
+@mixin btn-backgroudColor($bgColor, $change: 6%) {
+    background-color: $bgColor;
+    &:not(.disabled):not(.line):active,
+    &.active,
+    &:not(.disabled):not(.line):focus,
+    &.focus {
+        background-color: darken($bgColor, $change);
+        @include transition($btn-bg-color-ani-in);
+    } // 彩色边框, 该样式只与带边框的按钮搭配使用
+    &.line {
+        color: $bgColor;
+        background-color: transparent;
+        background-image: none;
+        &:not(.disabled):active,
+        &.active,
+        &:not(.disabled):focus,
+        &.focus {
+            color: darken($bgColor, 2%);
+        }
+        @include hairlineColor($bgColor, all);
+    }
+}
+
+@mixin btn-backgroudImage($bgColor, $change: 2%) {
+    background-image: -webkit-gradient(
+        $btn-gradient-type,
+        $btn-gradient-start,
+        $btn-gradient-end,
+        color-stop(.5, $bgColor),
+        to($bgColor)
+    );
+    background-clip: padding-box;
+    &:not(.disabled):active,
+    &.active,
+    &:not(.disabled):focus,
+    &.focus {
+        background-image: -webkit-gradient(
+            $btn-gradient-type,
+            $btn-gradient-start,
+            $btn-gradient-end,
+            color-stop(.5, $bgColor),
+            to(darken($bgColor, $change))
+        );
+        @include transition($btn-bg-color-ani-in);
+    }
+}
+
+/* 标准btn样式 */
+
+$btnPrefixCls: '#{$prefix}btn';
+.#{$btnPrefixCls} {
+    position: relative;
+    box-sizing: border-box;
+    color: $btn-color-text;
+    background-color: $btn-color-base;
+    user-select: none; // 禁止选中文本
+    &::after {
+        position: absolute;
+        top: -$btn-hot-area;
+        right: 0;
+        bottom: -$btn-hot-area;
+        left: 0;
+        content: '';
+    } // active状态
+    &:active,
+    &.active,
+    &:focus,
+    &.focus {
+        color: $btn-color-text-active;
+    } // disabled状态
+    &:disabled,
+    &.disabled,
+    fieldset[disabled] & {
+        cursor: default; //color: $btn-color-disabled-text;
+        //background-color: $btn-color-disabled;
+        opacity: .7;
+    } // size: btn-xl、btn-lg、btn、btn-sm、btn-xs
+    &#{&}-xl {
+        @include btn-size($btn-size-xl-text, $btn-size-xl, 1.8em);
+    }
+    &#{&}-lg {
+        @include btn-size($btn-size-lg-text, $btn-size-lg, 1.6em);
+    }
+    &#{&}-sm {
+        @include btn-size($btn-size-sm-text, $btn-size-sm, 1.2em);
+    }
+    &#{&}-xs {
+        @include btn-size($btn-size-xs-text, $btn-size-xs, 1em);
+    } // block level buttons
+    &#{&}-full,
+    &#{&}-block {
+        display: block;
+    }
+    &#{&}-full {
+        width: 100vw;
+        @include antiWingBlankMargin;
+    }
+    &#{&}-block {
+        width: 100%;
+        @include antiWingBlank;
+    } // btn-radius
+    &#{&}-radius:not(#{&}-full) {
+        @include hairlineWithRadius();
+    } // type: 带背景btn样式
+    &#{&}-primary,
+    &#{&}-secondary,
+    &#{&}-success,
+    &#{&}-warning,
+    &#{&}-error,
+    &#{&}-important,
+    &#{&}-mono {
+        color: $btn-color-text-inverse;
+        border: 0;
+    }
+    &#{&}-primary {
+        @include btn-backgroudColor($btn-color-primary);
+    }
+    &#{&}-secondary {
+        @include btn-backgroudColor($btn-color-secondary);
+    }
+    &#{&}-success {
+        @include btn-backgroudColor($btn-color-success);
+    }
+    &#{&}-warning {
+        @include btn-backgroudColor($btn-color-warning);
+    }
+    &#{&}-error {
+        @include btn-backgroudColor($btn-color-error);
+    }
+    &#{&}-important {
+        @include btn-backgroudColor($btn-color-important);
+    }
+    &#{&}-mono {
+        color: $btn-color-mono-text;
+        @include btn-backgroudColor($btn-color-mono);
+    }
+    &#{&}-primary,
+    &#{&}-secondary,
+    &#{&}-success,
+    &#{&}-warning,
+    &#{&}-error,
+    &#{&}-important,
+    &#{&}-link {
+        &.#{$btnPrefixCls}:not(.#{$btnPrefixCls}-fill) {
+            @include hairlineClean;
+        }
+    } // btn-icon
+    &#{&}-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    > &-icon {
+        margin-right: .5em;
+    } // link button (Buttons that look like links)
+    &#{&}-link {
+        color: $btn-color-text-link;
+        background-color: transparent;
+        background-image: none;
+        border: none;
+        &:active,
+        &.active,
+        &:focus,
+        &.focus {
+            color: $btn-color-text-link-active;
+            background-color: transparent;
+        }
+    } // progress button
+    &#{&}-progress {
+        overflow: hidden;
+        > .txt {
+            color: $btn-color-progressed-text;
+        }
+        .#{$btnPrefixCls}-inner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            overflow: hidden;
+            background-image: $btn-image-progress-inner;
+            border-top-left-radius: $btn-border-radius;
+            border-bottom-left-radius: $btn-border-radius;
+            .txt {
+                position: absolute;
+                top: 50%;
+                right: -1.5em;
+                width: 100%;
+                color: $btn-color-mono;
+                transform: translateY(-50%);
+            }
+        }
+        &.disabled,
+        &:disabled {
+            color: darken($btn-color-mono, 8%);
+            opacity: .6;
+        }
+    }
+    @include inline-block;
+    @include btn-size;
+    @include hairline(all, $btn-border-color);
+    @include transition($btn-bg-color-ani-out); // 扩大点击热区
+
+    /* btn组合，使用btn-group包裹 */
+    @at-root #{&}-group {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+        .#{$btnPrefixCls},
+        [role='button'],
+        button {
+            &:not(:first-child) {
+                @include singleBlank(left, margin);
+            }
+        }
+        &#{&}-full,
+        &#{&}-block {
+            min-width: 100%;
+            &:not(:first-child) {
+                @include whiteSpaceMargin;
+            }
+        }
+    }
+}

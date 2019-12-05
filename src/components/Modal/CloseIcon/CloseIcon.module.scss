@@ -1,0 +1,35 @@
+/* 关闭图标 */
+.close {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  background-color: rgba(255, 255, 255, .1);
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  cursor: pointer;
+  &.sm {
+      transform: scale(.6);
+  }
+  &.lg {
+      transform: scale(1);
+  }
+  &::before,
+  &::after {
+      position: absolute;
+      top: 15px;
+      left: 7px;
+      width: 16px;
+      height: 1px;
+      background-color: currentColor;
+      content: '';
+  }
+  &::before {
+      transform: rotate(45deg);
+  }
+  &::after {
+      transform: rotate(-45deg);
+  }
+  &:active {
+      background-color: #e0e0e0;
+  }
+}

@@ -1,0 +1,9 @@
+@import '../../settings';
+
+.#{$prefix}icon{
+  font-size: 16px;
+  cursor: pointer;
+  .active{
+    color: #f33;
+  }
+}

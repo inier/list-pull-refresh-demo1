@@ -1,0 +1,49 @@
+@import '../../settings';
+
+.leftContent {
+    display: flex;
+    flex: 1;
+    padding-left: 15px;
+    i:active {
+        color: #ececec;
+    }
+}
+
+.content {
+    flex: 1;
+    min-width: 7em;
+    max-width: 60%;
+    overflow: hidden;
+    text-align: center;
+}
+
+.title {
+}
+
+.rightContent {
+    flex: 1;
+    padding-right: 15px;
+    text-align: right;
+}
+
+.header {
+    display: flex;
+    flex-basis: $header-height;
+    flex-shrink: 0;
+    width: 100%;
+    color: #333;
+    line-height: $header-height;
+    background-color: #fff;
+    &.reverse {
+        &,
+        .content,
+        .content i,
+        .leftContent,
+        .rightContent,
+        .leftContent i,
+        .rightContent i {
+            color: #fff;
+            background-color: #333;
+        }
+    }
+}

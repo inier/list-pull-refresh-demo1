@@ -1,0 +1,51 @@
+@import '../../settings';
+
+.itemWrap {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-right: $page-wingblank;
+    color: #222;
+    font-size: 14px;
+    background-color: #fff;
+}
+.itemHeader {
+    display: flex;
+    height: 46px;
+    line-height: 46px;
+}
+.itemBody {
+    display: flex;
+    align-items: center; 
+    background-color: #fafafa;  
+    min-height: 84px; 
+}
+.desc {
+    flex: 1;
+    > div {
+        line-height: 1.6;
+    }
+    margin-right: -5px;
+}
+.itemFooter {
+    display: flex;
+    height: 46px;
+    line-height: 46px;
+}
+
+.cast {
+    display: flex;
+}
+.castItem{
+  margin: 0 5px;
+  background-color: #eaeaea;
+  flex: 1;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.castTxt{
+    font-size: 12px;
+    line-height: 1.5;
+}

@@ -1,0 +1,43 @@
+{
+  "name": "new",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "main": "src/index.js",
+  "dependencies": {
+    "@material-ui/core": "4.7.0",
+    "@ozo/lazy-loader": "^1.0.2",
+    "@ozo/mixins-sass": "1.1.7",
+    "axios": "0.19.0",
+    "classnames": "2.2.6",
+    "enzyme": "3.10.0",
+    "enzyme-adapter-react-16": "1.15.1",
+    "lodash-es": "^4.17.15",
+    "node-sass": "4.13.0",
+    "prop-types": "15.7.2",
+    "react": "16.8.6",
+    "react-axios": "2.0.3",
+    "react-dom": "16.8.6",
+    "react-icons": "3.8.0",
+    "react-router-dom": "5.1.2",
+    "react-scripts": "3.0.1",
+    "react-window-pull-refresh": "1.0.6",
+    "shortid": "^2.2.15"
+  },
+  "devDependencies": {
+    "http-proxy-middleware": "^0.20.0",
+    "typescript": "3.3.3"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}

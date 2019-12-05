@@ -1,0 +1,111 @@
+@import './main';
+
+$radioIcon-color-normal: #666;
+$radioIcon-color-active: #f33;
+$radioIcon-color-disabled: #aaa;
+
+$item-inline-padding-r: 8px;
+$item-inline-bgColor-normal: #999;
+$item-inline-bgColor-active: #292afa;
+$item-inline-radius: $corner-1;
+$item-inline-min-width: 82px;
+$item-inline-height: 32px;
+$item-min-height: 48px;
+$radioIcon-zIndex: 999;
+$item-font-size: 14px; 
+
+.radioGroup {
+    display: flex;
+    flex-direction: column;
+    &.inline {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: flex-start;
+        .radioItem {
+            flex: 1;
+            text-align: center;
+            justify-content: center;
+            height: $item-inline-height;
+            min-height: auto;
+            min-width: $item-inline-min-width;
+            background-color: $item-inline-bgColor-normal;
+            border-radius: $item-inline-radius;
+            &.active {
+                background-color: $item-inline-bgColor-active;
+            }
+            + .radioItem {
+                margin-left: $item-inline-padding-r;
+            }
+        }
+        .radioChecker {
+            display: none;
+        }
+    }
+}
+.radioItem {
+    position: relative;
+    display: flex;
+    width: 100%;
+    min-height: $item-min-height;
+    align-items: center;
+    user-select: none;
+    font-size: $item-font-size;
+
+    // input[type='radio'] {
+    //     appearance: none;
+    // }
+    // input[type='radio']:focus,
+    // input[type='radio']:hover {
+    //     outline: none;
+    // }
+    .radioChecker {
+        position: absolute;
+        top: 50%;
+        right: percentage(24 / 375);
+        // width: 20px;
+        // min-height: 20px;
+        // font-size: 20px;
+        z-index: $radioIcon-zIndex;
+        color: $radioIcon-color-normal;
+        transform: translateY(-50%);
+        .single {
+            display: none;
+        }
+    }
+    &.left {
+        padding-left: 28px;
+        .radioChecker {
+            left: 0;
+            right: auto;
+        }
+    }
+    input[type='radio']:checked {
+        + .radioChecker {
+            color: $radioIcon-color-active;
+            i::before,
+            .radioIcon::before {
+                color: $radioIcon-color-active;
+            }
+            .single {
+                display: block;
+            }
+        }
+    }
+    input[type='radio'][disabled] {
+        &:checked {
+            color: $radioIcon-color-disabled;
+        }
+
+        + .radioChecker {
+            color: $radioIcon-color-disabled;
+            i::before,
+            .radioIcon::before {
+                color: $radioIcon-color-disabled;
+            }
+        }
+    }
+    input:matches([type='checkbox'], [type='radio']):checked {
+        opacity: 0;
+    }
+}

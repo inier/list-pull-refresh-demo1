@@ -1,0 +1,12 @@
+@import '../../settings';
+
+.searchResult {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    height: 30px - $page-whitespace;
+    color: #aaa;
+    font-size: 13px;
+    line-height: 1;
+    background-color: $page-bg-color;
+}

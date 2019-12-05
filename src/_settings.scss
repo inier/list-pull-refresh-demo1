@@ -1,0 +1,10 @@
+// 公共scss mixins
+@import '~@ozo/mixins-sass/src/default';
+
+$prefix: 'toxic-';
+//== 颜色
+$page-bg-color: #f5f5f5;
+//== 布局
+$page-min-width: 320px;
+$page-whitespace: 8px;
+$page-wingblank: 12px;

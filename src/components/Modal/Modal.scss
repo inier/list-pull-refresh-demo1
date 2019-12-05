@@ -1,0 +1,130 @@
+@import '../../settings';
+
+$modalPrefixCls: '#{$prefix}modal';
+
+.#{$modalPrefixCls} {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: $zindex-modal;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transform: translateZ(0);
+    &-mask {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 1;
+        background-color: $modal-bg-color;
+        transform: translateZ(0);
+        visibility: hidden;
+        opacity: 0;
+        transition: all .5s;
+    }
+    &-content {
+        position: absolute;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        width: $modal-width;
+        min-width: $modal-min-width;
+        max-width: $modal-max-width;
+        min-height: $modal-min-height;
+        color: $modal-text-color;
+        background-color: #fff;
+        transform: translateZ(0);
+
+        &.dialog {
+            max-height: $modal-max-height;
+            margin-top: $modal-pos-offset-v;
+            border-radius: $modal-border-radius;
+        }
+        &.layer {
+            bottom: -100%;
+            width: 100%;
+            max-width: 100%;
+            max-height: 100%;
+            border-top-left-radius: $modal-border-radius;
+            border-top-right-radius: $modal-border-radius;
+            transition: bottom .5s;
+        }
+    }
+    &.show {
+        .#{$modalPrefixCls}-mask {
+            visibility: visible;
+            opacity: 1;
+            transition: all .5s;
+        }
+        .#{$modalPrefixCls}-content {
+            &.layer {
+                bottom: 0;
+                transition: bottom .5s;
+            }
+        }
+    }
+    &-header,
+    &-footer {
+        height: $modal-header-height;
+        line-height: $modal-header-height;
+    }
+    &-header {
+        text-align: center;
+    }
+    &-title {
+        display: inline-block;
+        max-width: 10em;
+        @include ellipsis;
+    }
+    &-body {
+        position: relative;
+        margin: $modal-padding;
+        overflow-y: auto;
+        word-wrap: break-word;
+        word-break: break-all;
+        -webkit-overflow-scrolling: touch;
+    }
+    &-footer {
+        padding: 6px 12px;
+        text-align: right;
+        .btnWrap {
+            flex: 1;
+            align-items: center;
+            align-self: flex-end;
+            justify-content: flex-end;
+        }
+    }
+    .layer {
+        .#{$modalPrefixCls}-closeIcon {
+            top: 1px;
+            right: 32px;
+            left: auto;
+            i {
+                color: #fff;
+                background-color: rgba(0, 0, 0, .4);
+                transform: scale(.65);
+            }
+        }
+    }
+    &-closeIcon {
+        position: absolute;
+        right: 32px;
+        i {
+            border: 0 none;
+        }
+        &.type2 {
+            bottom: -16px;
+            left: 50%;
+            margin-left: -16px;
+            color: #919191;
+            i {
+                background-color: rgba(255, 255, 255, .7);
+            }
+        }
+    }
+}

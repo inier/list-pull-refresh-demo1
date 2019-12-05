@@ -1,0 +1,9 @@
+@import '../../settings';
+
+.item {
+    margin-top: 8px;    
+    padding-left: $page-wingblank;
+    background-color: #fff;
+    overflow: hidden;
+    // box-shadow: $card-box-shadow-1;
+}

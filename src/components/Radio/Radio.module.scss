@@ -1,0 +1,107 @@
+@import '../../settings';
+
+$radioIcon-color-normal: $std-grey;
+$radioIcon-color-active: $color-primary;
+$radioIcon-color-disabled: $std-gray-lightest;
+$item-inline-padding-r: $h-spacing-md;
+$item-inline-bgColor-normal: $std-gray-lightest;
+$item-inline-bgColor-active: $color-primary;
+$item-inline-radius: $radius-sm;
+$item-inline-min-width: 82px;
+$item-inline-height: 32px;
+$item-min-height: 48px;
+$radioIcon-zIndex: 999;
+
+.radioGroup {
+    display: flex;
+    flex-direction: column;
+    &.inline {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: flex-start;
+        .radioItem {
+            flex: 1;
+            justify-content: center;
+            min-width: $item-inline-min-width;
+            height: $item-inline-height;
+            min-height: auto;
+            margin: $item-inline-padding-r / 2;
+            text-align: center;
+            background-color: $item-inline-bgColor-normal;
+            border-radius: $item-inline-radius;
+            &.active {
+                background-color: $item-inline-bgColor-active;
+            }
+        }
+        .radioChecker {
+            display: none;
+        }
+    }
+}
+.radioItem {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-height: $item-min-height;
+    font-size: $font-size-h4;
+    user-select: none;
+
+    // input[type='radio'] {
+    //     appearance: none;
+    // }
+    // input[type='radio']:focus,
+    // input[type='radio']:hover {
+    //     outline: none;
+    // }
+    .radioChecker {
+        position: absolute;
+        top: 50%;
+        right: percentage(24 / 375);
+        // width: 20px;
+        // min-height: 20px;
+        // font-size: 20px;
+        z-index: $radioIcon-zIndex;
+        color: $radioIcon-color-normal;
+        transform: translateY(-50%);
+        .single {
+            display: none;
+        }
+    }
+    &.left {
+        padding-left: 28px;
+        .radioChecker {
+            right: auto;
+            left: 0;
+        }
+    }
+    input[type='radio']:checked {
+        + .radioChecker {
+            color: $radioIcon-color-active;
+            i::before,
+            .radioIcon::before {
+                color: $radioIcon-color-active;
+            }
+            .single {
+                display: block;
+            }
+        }
+    }
+    input[type='radio'][disabled] {
+        &:checked {
+            color: $radioIcon-color-disabled;
+        }
+
+        + .radioChecker {
+            color: $radioIcon-color-disabled;
+            i::before,
+            .radioIcon::before {
+                color: $radioIcon-color-disabled;
+            }
+        }
+    }
+    input:matches([type='checkbox'], [type='radio']):checked {
+        opacity: 0;
+    }
+}
