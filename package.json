@@ -13,7 +13,7 @@
     "enzyme": "3.10.0",
     "enzyme-adapter-react-16": "1.15.1",
     "lodash-es": "^4.17.15",
-    "node-sass": "4.13.0",
+    "node-sass": "7.0.0",
     "prop-types": "15.7.2",
     "react": "16.8.6",
     "react-axios": "2.0.3",
